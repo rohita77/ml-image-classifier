@@ -1,0 +1,14 @@
+<div class="example-button-row">
+  <label for="singleFile" *ngIf="uploader.queue.length === 0">Add "{{label}}" images for training </label><br>
+  <button mat-icon-button *ngIf="uploader.queue.length > 0">
+      <mat-icon aria-label="add image class" color="warn" >delete</mat-icon>
+      {{label}}
+    </button>
+  <input  id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple/>
+</div>
+<br>
+<br>
+
+<div [hidden]="true" [id]="i" *ngFor="let item of uploader.queue; let i = index">
+    <img [src]="src[i]" alt="Photo to predict" (load)="TrainingImageAdded.emit($event.target)">
+</div>

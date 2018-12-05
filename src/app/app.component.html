@@ -1,0 +1,106 @@
+<div class="mat-app-background basic-container">
+  <strong> {{ title }} </strong>
+  <mat-tab-group>
+
+    <mat-tab label="Predict">
+      <div>
+        <!--The content below is only a placeholder and can be replaced.-->
+        <br>
+
+        <div *ngIf="!classifierReady">
+          Loading ... {{modelName}}
+        </div>
+
+        <div *ngIf="classifierReady">
+          <div>
+            {{classifier.modelName}} model is ready for prediction
+          </div>
+
+          <br>
+
+          <div>
+            <label for="singleFile">Upload file(s) for prediction</label><br>
+            <input mat-stroked-button id="singleFile" type="file" ng2FileSelect [uploader]="uploader" multiple />
+          </div>
+        </div>
+        <br>
+        <br>
+        <mat-divider></mat-divider>
+
+        <div [id]="i" *ngFor="let item of uploader.queue.reverse(); let i = index">
+          <app-image-predictor [classifier]="classifier" [image]="item?.file">
+          </app-image-predictor>
+        </div>
+
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Train">
+
+      <mat-list>
+        <mat-list-item *ngIf="!classifierReady">
+          Loading ... {{modelName}}
+          <mat-divider></mat-divider>
+        </mat-list-item>
+
+      </mat-list>
+
+      <mat-list *ngIf="classifierReady">
+
+        <mat-list-item>
+          {{modelName}} model is ready for training. Add the label of image you want to train
+          <mat-divider></mat-divider>
+
+        </mat-list-item>
+
+        <form class="example-form" (ngSubmit)="addLabel()" #labelForm="ngForm">
+
+          <mat-list-item>
+
+            <mat-form-field class="example-full-width">
+
+              <input matInput placeholder="New image label e.g. apple, orange" value="" required [(ngModel)]="newLabel" name="newLabel" id="newLabel"
+                #name="ngModel" autocomplete="off">
+              <!--
+                  <div [hidden]="ShouldBeHidden(newLabel.valid, newLabel.pristine)">
+                    Name is required
+                  </div>
+                  -->
+            </mat-form-field>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="classifier.customModel.model?.hasAnyTrainedClass && !classifier.customModel.isTraining">
+            <button color="primary" (click)="classifier.trainCustomeModel()">
+              Train Model
+            </button>
+          </mat-list-item>
+          <mat-list-item *ngIf="classifier.customModel.isTraining">
+            Training in Progress....
+            <br>
+            Loss is {{classifier.customModel.lossValue}}
+          </mat-list-item>
+          <mat-list-item *ngIf="(!classifier.customModel.isTraining) && (classifier.customModel.lossValue >= 0)">
+            Done Training! Final Loss: {{classifier.customModel.lossValue}}
+          </mat-list-item>
+
+
+        </form>
+
+        <mat-divider></mat-divider>
+
+        <mat-list-item *ngFor="let label of customClasses; index as i">
+          <app-image-label [id]="label" [label]="label" (TrainingImageAdded)="classifier.addImageForTraining($event,label)">
+
+          </app-image-label>
+          <mat-divider></mat-divider>
+          <br>
+        </mat-list-item>
+      </mat-list>
+
+
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+<router-outlet></router-outlet>
