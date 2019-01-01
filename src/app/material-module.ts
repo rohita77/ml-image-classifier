@@ -1,7 +1,7 @@
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
+// import {CdkTreeModule} from '@angular/cdk/tree';
 import {NgModule} from '@angular/core';
 import {
   MatAutocompleteModule,
@@ -20,7 +20,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
+  // MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
   MatProgressBarModule,
@@ -31,20 +31,20 @@ import {
   MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
-  MatSnackBarModule,
+  // MatSnackBarModule,
   MatSortModule,
-  MatStepperModule,
+  // MatStepperModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  // MatTreeModule,
 } from '@angular/material';
 
 @NgModule({
   exports: [
     CdkTableModule,
-    CdkTreeModule,
+    // CdkTreeModule,
     DragDropModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -54,7 +54,7 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatStepperModule,
+    // MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -63,7 +63,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatMenuModule,
+    // MatMenuModule,
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
@@ -74,13 +74,13 @@ import {
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatSnackBarModule,
+    // MatSnackBarModule,
     MatSortModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    // MatTreeModule,
     ScrollingModule,
   ]
 })

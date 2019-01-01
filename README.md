@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
 
+# Live Example
+https://rohita77.github.io/ml-image-classifier/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -25,3 +28,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deploy to Github Pages
+ng build --prod --base-href "https://rohita77.github.io/ml-image-classifier/"
+
+add a message to the commit when deploying:
+ngh --message="First deploy"
+
+specify which branch to deploy:
+ngh --branch=production
+
+do a dry run before actually deploying to see the output
+ngh --dry-run

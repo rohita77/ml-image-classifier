@@ -13,7 +13,8 @@ export class ImagePredictorComponent implements OnInit {
 
   src = '../../assets/images/cat.jpg';
   results = [{
-
+    className : null,
+    probability: null,
   }];
 
   inferenceTime = null;
