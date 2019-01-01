@@ -40,7 +40,7 @@ export class Classifier {
         this.customModel.model.addImage(image, className);
     }
 
-    async trainCustomeModel() {
+    async trainCustomModel() {
         this.customModel.isTraining = true;
         await this.customModel.model.train((lossValue) => {
             if (lossValue) {

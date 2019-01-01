@@ -37,30 +37,27 @@
     </mat-tab>
     <mat-tab label="Train">
 
-      <mat-list>
-        <mat-list-item *ngIf="!classifierReady">
+      <mat-list role="list">
+
+        <h3 mat-subheader>Model Information</h3>
+        <mat-list-item role="listitem" *ngIf="!classifierReady">
           Loading ... {{modelName}}
-          <mat-divider></mat-divider>
         </mat-list-item>
 
-      </mat-list>
-
-      <mat-list *ngIf="classifierReady">
-
-        <mat-list-item>
-          {{modelName}} model is ready for training. Add the label of image you want to train
-          <mat-divider></mat-divider>
-
+        <mat-list-item role="listitem" *ngIf="classifierReady">
+          {{modelName}} model is ready for training. Add the label for the image you want to train
         </mat-list-item>
+        <mat-divider></mat-divider>
 
+        <h3 mat-subheader>Labels</h3>
         <form class="example-form" (ngSubmit)="addLabel()" #labelForm="ngForm">
 
-          <mat-list-item>
+          <mat-list-item role="listitem">
 
             <mat-form-field class="example-full-width">
 
-              <input matInput placeholder="New image label e.g. apple, orange" value="" required [(ngModel)]="newLabel" name="newLabel" id="newLabel"
-                #name="ngModel" autocomplete="off">
+              <input matInput placeholder="New image label e.g. apple, orange" value="" required [(ngModel)]="newLabel"
+                name="newLabel" id="newLabel" #name="ngModel" autocomplete="off">
               <!--
                   <div [hidden]="ShouldBeHidden(newLabel.valid, newLabel.pristine)">
                     Name is required
@@ -69,32 +66,38 @@
             </mat-form-field>
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item *ngIf="classifier.customModel.model?.hasAnyTrainedClass && !classifier.customModel.isTraining">
-            <button color="primary" (click)="classifier.trainCustomeModel()">
+
+          <h3 mat-subheader>Training Results</h3>
+          <mat-list-item role="listitem" *ngIf="classifier?.customModel?.model?.hasAnyTrainedClass && !classifier?.customModel?.isTraining">
+            <button color="primary" (click)="classifier.trainCustomModel()">
               Train Model
             </button>
           </mat-list-item>
-          <mat-list-item *ngIf="classifier.customModel.isTraining">
-            Training in Progress....
-            <br>
-            Loss is {{classifier.customModel.lossValue}}
+
+          <mat-list-item role="listitem" *ngIf="classifier.customModel.isTraining">
+            <p mat-line> Training in Progress....</p>
+            <p mat-line>
+              Loss is {{classifier.customModel.lossValue}}
+            </p>
           </mat-list-item>
-          <mat-list-item *ngIf="(!classifier.customModel.isTraining) && (classifier.customModel.lossValue >= 0)">
+          <mat-list-item role="listitem" *ngIf="(!classifier.customModel.isTraining) && (classifier.customModel.lossValue >= 0)">
             Done Training! Final Loss: {{classifier.customModel.lossValue}}
           </mat-list-item>
-
+          <mat-divider></mat-divider>
 
         </form>
 
-        <mat-divider></mat-divider>
+        <h3 mat-subheader>Training Images</h3>
 
-        <mat-list-item *ngFor="let label of customClasses; index as i">
-          <app-image-label [id]="label" [label]="label" (TrainingImageAdded)="classifier.addImageForTraining($event,label)">
+        <div *ngFor="let label of customClasses; index as i">
+          <mat-list-item role="listitem">
+            <app-image-label [id]="label" [label]="label" (TrainingImageAdded)="classifier.addImageForTraining($event,label)">
 
-          </app-image-label>
-          <mat-divider></mat-divider>
-          <br>
-        </mat-list-item>
+            </app-image-label>
+          </mat-list-item> <br>
+          <mat-divider></mat-divider> <br>
+        </div>
+
       </mat-list>
 
 
