@@ -32,3 +32,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Deploy to Github Pages
 ng build --prod --output-path docs --base-href "https://<username>.github.io/<project-name>/"
 copy index.html as 404.html
+Push files to Github
