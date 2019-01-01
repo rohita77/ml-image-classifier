@@ -30,16 +30,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Deploy to Github Pages
-ng build --prod --base-href "https://rohita77.github.io/ml-image-classifier/"
-
-ng build --prod --output-path docs --base-href "https://rohita77.github.io/ml-image-classifier/"
-
-
-add a message to the commit when deploying:
-ngh --message="First deploy"
-
-specify which branch to deploy:
-ngh --branch=production
-
-do a dry run before actually deploying to see the output
-ngh --dry-run
+ng build --prod --output-path docs --base-href "https://<username>.github.io/<project-name>/"
+copy inde.html as 404.html
